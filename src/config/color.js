@@ -1,5 +1,6 @@
 export default {
   white: "#fff",
-  grey: "#EAEAEA",
+  grey: "#eee",
+  darkGrey: '#999',
   black: "#000"
 }
