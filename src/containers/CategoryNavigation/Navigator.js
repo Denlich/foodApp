@@ -10,7 +10,7 @@ import FlatListContainer from './components/FlatListContainer';
 
 import navigator from './styles/navigator';
 
-const width = Dimensions.get('window').width;
+const display = Dimensions.get('window');
 
 export default function Navigator() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -26,23 +26,23 @@ export default function Navigator() {
   }).current;
 
   const data = [
-    { id: '1', text: 'Burgers' },
-    { id: '2', text: 'Pizza' },
-    { id: '3', text: 'Noodles' },
-    { id: '4', text: 'Salad' }
+    { id: '0', text: 'Burgers' },
+    { id: '1', text: 'Pizza' },
+    { id: '2', text: 'Noodles' },
+    { id: '3', text: 'Salad' }
   ];
 
   return (
     <View style={navigator.container}>
       <Paginator 
-        width={width}
+        width={display.width}
         data={data} 
         pan={pan} 
         scrollToIndex={scrollToIndex} 
       />
 
       <FlatListContainer 
-        width={width}
+        display={display}
         data={data}
         pan={pan}
         viewableItemsChanged={viewableItemsChanged}

@@ -1,28 +1,20 @@
 import React, { useState, useRef } from 'react';
 import {
   View,
-  Text,
   Animated
 } from 'react-native';
 
-export default function FlatListContainer({ width, data, pan, viewableItemsChanged, slidesRef }) {
+import { category } from '../config/category';
+import FilterRender from './FilterRender';
+
+export default function FlatListContainer({ display, data, pan, viewableItemsChanged, slidesRef }) {
   return (
-    <Animated.FlatList
-      data={data}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => {
-        return (
-          <View style={{flex: 1, width: width, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>{ item.text }</Text>
-          </View>
-        );
-      }}
-      
+    <Animated.FlatList      
       horizontal
       bounces={false}
       showsHorizontalScrollIndicator={false}
       paddingEnabled
-      snapToInterval={width}
+      snapToInterval={display.width}
       decelerationRate={'fast'}
       removeClippedSubviews={true}
       disableIntervalMomentum={true}
@@ -37,6 +29,21 @@ export default function FlatListContainer({ width, data, pan, viewableItemsChang
       }
       onViewableItemsChanged={viewableItemsChanged}
       ref={slidesRef}
+
+      data={data}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => {
+        const data=category[item.text];
+
+        return (
+          <View style={{flex: 1, width: display.width}}>
+            <FilterRender 
+              data={data}
+              display={display}
+            />
+          </View>
+        );
+      }}
     />
   );
 }

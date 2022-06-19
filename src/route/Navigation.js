@@ -16,6 +16,10 @@ export default function Navigation() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        headerStyle: {
+          elevation: 0,
+          borderBottomWidth: 0
+        },
         tabBarInactiveBackgroundColor: color.white,
         tabBarStyle: {
           elevation: 0,
@@ -35,7 +39,12 @@ export default function Navigation() {
           (focused) ? color='#eee' : color='#fff';
 
           return (
-            <Icon bgColor={color} color={'#000'} name={icons[route.name]} size={size} />
+            <Icon 
+              bgColor={color} 
+              color={'#000'} 
+              name={icons[route.name]} 
+              size={size} 
+            />
           );
         },
       })}
